@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class TrapGun : MonoBehaviour
 {
-    public float shootSpeed = 10f;
+    public float shootSpeed = 1000f;
     public GameObject trapPrefab;
     public List<GameObject> traps;
     public Vector3 trapOffset;
@@ -26,7 +26,8 @@ public class TrapGun : MonoBehaviour
         spawnPosition.y += trapOffset.y;
         spawnPosition += cam.transform.right * trapOffset.x;
 
-        GameObject trap = Instantiate(trapPrefab, spawnPosition, Quaternion.Euler(trapRotation));
+        GameObject trap = Instantiate(trapPrefab, spawnPosition,
+            Quaternion.LookRotation(cam.transform.forward, Vector3.up) * Quaternion.Euler(trapRotation));
 
         trap.GetComponent<Rigidbody>()?.AddForce(cam.transform.forward * shootSpeed);
 

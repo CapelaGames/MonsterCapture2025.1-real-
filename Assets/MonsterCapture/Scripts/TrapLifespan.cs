@@ -18,25 +18,31 @@ public class TrapLifeSpan : MonoBehaviour
     IEnumerator LifeSpan()
     {
         MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
-
-        Color currentColor = propertyBlock.GetColor("_BaseColor");
-        currentColor.a = 0;
-        propertyBlock.SetColor("_BaseColor", currentColor);
-
+        Color currentColor = renderers[0].material.color;
         yield return new WaitForSeconds(1f);
 
-        foreach(Light light in lights)
+        //alpha from 1 to 0
+        float startTime = Time.time;
+        float endTime = startTime + 3f;
+        float lightStart = lights[0].intensity;
+        while (Time.time < endTime)
         {
-            light.intensity = 0;
-        }
+            float t = 1 - Mathf.InverseLerp(startTime, endTime, Time.time);
+            currentColor.a = t;
+            propertyBlock.SetColor("_BaseColor", currentColor);
 
-        foreach(MeshRenderer renderer in renderers)
-        {
-            renderer.SetPropertyBlock(propertyBlock);
-        }
+            foreach (MeshRenderer renderer in renderers)
+            {
+                renderer.SetPropertyBlock(propertyBlock);
+            }
 
-        yield return new WaitForSeconds(1f);
+            foreach (Light light in lights)
+            {
+                light.intensity = lightStart * t;
+            }
+
+            yield return null;
+        }
         Destroy(gameObject);
-
     }
 }
