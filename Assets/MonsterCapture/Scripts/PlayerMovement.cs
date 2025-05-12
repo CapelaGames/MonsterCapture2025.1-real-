@@ -13,7 +13,9 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded = false;
 
     float jumpSpeed = 300;
-    float moveSpeed = 10;
+    float moveSpeed = 20;
+
+    private float maxSpeed = 100f;
 
     public GameObject dooDoo;
 
@@ -51,8 +53,15 @@ public class PlayerMovement : MonoBehaviour
         movement3D = cam.transform.TransformDirection(movement3D);
         movement3D.y = 0f;
         movement3D = movement3D.normalized * movement3D.magnitude;
-
+        
         rb.AddForce(movement3D * moveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+
+        if (isGrounded)
+        {
+            Vector3 goalMovement = movement3D * moveSpeed;
+            Vector3 newVelocity = Vector3.Lerp(rb.linearVelocity, goalMovement, Time.deltaTime * 5f);
+            rb.linearVelocity = newVelocity;
+        }
     }
 
     private void OnCollisionStay(Collision collision)
