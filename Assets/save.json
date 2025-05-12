@@ -1,10 +1,18 @@
 {
-    "data": "HELLO WORLD",
-    "funnyNumber": 1337,
-    "floaty": 420.4200134277344,
-    "position": {
-        "x": 0.0,
-        "y": 1.0,
-        "z": 4.58755608492828e-19
-    }
+    "scores": [
+        99,
+        3,
+        0,
+        0,
+        0,
+        0
+    ],
+    "names": [
+        "Andrew",
+        "Rock man",
+        "Jim man",
+        "Good man",
+        "Soup man",
+        "Idea man"
+    ]
 }
