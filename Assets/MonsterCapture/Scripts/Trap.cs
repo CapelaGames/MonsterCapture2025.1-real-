@@ -12,19 +12,23 @@ public class Trap : MonoBehaviour
     {
         if(other.TryGetComponent<ITrappable>(out ITrappable pals))
         {
-            StartCoroutine(Capture(pals));
+            if (pals.isBeingCaptured) return;
+            HighScoreManager.instance?.IncreaseScore(pals.PointValue());
+            StartCoroutine(Capture(pals, other.gameObject));
         }
     }
     
-    IEnumerator Capture(ITrappable pals)
+    IEnumerator Capture(ITrappable pals, GameObject go)
     {
-        while (true)
+        bool isAnimationPlaying = true;
+        while (isAnimationPlaying)
         {
             rb.isKinematic = true;
             transform.rotation *= Quaternion.AngleAxis(Time.deltaTime * 100,
-                                                        Vector3.right);
-            pals.CaptureAnimation();
+                Vector3.right);
+            isAnimationPlaying = pals.CaptureAnimation();
             yield return null;
         }
+        Destroy(go);
     }
 }

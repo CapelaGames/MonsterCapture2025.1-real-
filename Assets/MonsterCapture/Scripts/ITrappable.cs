@@ -2,6 +2,7 @@ using UnityEngine;
 
 public interface ITrappable
 {
-    public void CaptureAnimation();
+    public bool isBeingCaptured { get; set; }
+    public bool CaptureAnimation();
     public int PointValue();
 }
