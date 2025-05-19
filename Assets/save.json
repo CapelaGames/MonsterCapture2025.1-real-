@@ -2,27 +2,27 @@
     "scores": [
         99,
         3,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1,
+        1,
         0
     ],
     "names": [
         "Andrew",
         "Rock man",
-        "Jim man",
-        "Good man",
-        "Soup man",
-        "Idea man",
-        "Idea man",
-        "Jim man",
+        "Ghost Man",
+        "Ghost Man",
+        "Jim",
+        "Jim",
         "Good man",
         "Jim",
-        "Soup man"
+        "Jim man",
+        "Good man",
+        "Idea man"
     ]
 }

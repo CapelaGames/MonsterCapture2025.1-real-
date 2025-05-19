@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,8 +8,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         player = FindFirstObjectByType<PlayerMovement>().gameObject;
-
-        HighScoreManager.instance.RefreshScoreDisplay();
     }
     
     void Update()
@@ -19,4 +18,5 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
+
 }
